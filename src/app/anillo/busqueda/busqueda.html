@@ -1,0 +1,45 @@
+    <div class="barraBusqueda">
+     <div class="acciones">
+    <table>
+        <tr>
+            <td><button id="buscarAnillo">Buscar Anillo</button></td>
+            <td><button routerLink="/detalle" id="crearAnillo">Crear Anillo</button></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+
+    <div class="busqueda">
+       <input type="text" pInputText [(ngModel)]="campoBusqueda" />
+       <p-button label="Buscar Anillo" icon="pi pi-check"  (onClick)="buscar()" severity="danger" />
+    </div>
+
+    <div>
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Portador</th>
+                    <th>Raza</th>
+                    <th>Poder</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (anillo of anillosFiltrados; track anillo.nombre) {
+                    <tr>
+                        <td>{{ anillo.nombre }}</td>
+                        <td>{{ anillo.portador }}</td>
+                        <td>{{ anillo.raza }}</td>
+                        <td>{{ anillo.poder }}</td>
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td colspan="4">No se encontraron anillos</td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+
+    </div>

@@ -1,0 +1,106 @@
+<div class="barraBusqueda">
+  <div class="acciones">
+    <table>
+      <tr>
+        <td><button routerLink="/buscar" id="buscarAnillo">Buscar Anillo</button></td>
+        <td><button id="crearAnillo">Crear Anillo</button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="formulario">
+  <form [formGroup]="formulario" (ngSubmit)="enviar()">
+
+    <div>
+      <label>Nombre</label>
+      <input
+        pInputText
+        type="text"
+        formControlName="nombre"
+        placeholder="Nombre Anillo">
+
+      @if (
+        formulario.get('nombre')?.invalid &&
+        (formulario.get('nombre')?.touched || formulario.get('nombre')?.dirty)
+      ) {
+        <small>El nombre es obligatorio (mínimo 3 caracteres)</small>
+      }
+    </div>
+
+    <div>
+      <label>Portador</label>
+      <input
+        pInputText
+        type="text"
+        formControlName="portador"
+        placeholder="Portador">
+
+      @if (
+        formulario.get('portador')?.invalid &&
+        (formulario.get('portador')?.touched || formulario.get('portador')?.dirty)
+      ) {
+        <small>El portador es obligatorio (mínimo 3 caracteres)</small>
+      }
+    </div>
+
+    <div>
+      <label>Raza</label>
+      <p-selectbutton
+        [options]="razas"
+        formControlName="raza">
+      </p-selectbutton>
+
+      @if (
+        formulario.get('raza')?.invalid &&
+        (formulario.get('raza')?.touched || formulario.get('raza')?.dirty)
+      ) {
+        <small>Selecciona la raza del portador</small>
+      }
+    </div>
+
+    <div>
+      <label>Poder</label>
+      <textarea
+        pTextarea
+        formControlName="poder"
+        placeholder="Descripción">
+      </textarea>
+
+      @if (
+        formulario.get('poder')?.invalid &&
+        (formulario.get('poder')?.touched || formulario.get('poder')?.dirty)
+      ) {
+        <small>El poder es obligatorio (mínimo 10 caracteres)</small>
+      }
+    </div>
+
+    <div>
+      <label>Corrupción</label>
+      <input
+        pInputText
+        type="number"
+        formControlName="corrupcion"
+        min="0"
+        max="100"
+        placeholder="50">
+
+      @if (
+        formulario.get('corrupcion')?.invalid &&
+        (formulario.get('corrupcion')?.touched || formulario.get('corrupcion')?.dirty)
+      ) {
+        <small>Valor entre 0 y 100</small>
+      }
+    </div>
+
+    <div>
+      <p-button type="submit" [disabled]="formulario.invalid">
+        Guardar anillo
+      </p-button>
+
+      <p-button type="button" (click)="limpiar()">
+        Limpiar
+      </p-button>
+    </div>
+  </form>
+</div>

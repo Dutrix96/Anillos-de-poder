@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+.hero {
+  height: 300px;
+  background-image: url("./assets/img/fondoCabecera.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: #f5f5f5;
+}
+
+.overlay {
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.hero p {
+  max-width: 600px;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.acciones button {
+  margin: 0 10px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: transparent;
+  border: 2px solid #c9aa71;
+  color: #c9aa71;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.acciones button:hover {
+  background-color: #c9aa71;
+  color: #000;
+}
+
+.barraBusqueda {
+  background-color:blanchedalmond;
+  align-content: center;
+  height: 100px;
+  align-items: center;
+ 
+}
+
+.formulario {
+  padding-top: 10px;             
+  display: flex;
+  justify-content: center;    
+  align-items: center;  
+}
+
+.busqueda {
+    padding-top: 10px;   
+    display: flex;
+   justify-content: center;    
+   align-items: center;  
+   color: #000;
+}
+
+.busqueda button {
+    margin-left: 10px;
+}
+
+.tabla {
+    border: rgb(255, 234, 0) 2px solid;
+    border-radius: 5px;
+    background-color: bisque;
+    align-items: center;
+    color:#000;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 20px ;
+    margin-top: 20px;
+}
+
+tbody {
+  border: blue 5px solid;
+}
+tr {
+  border: green 5px solid;
+}

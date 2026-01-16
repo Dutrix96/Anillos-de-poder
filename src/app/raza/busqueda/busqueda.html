@@ -1,0 +1,49 @@
+    <div class="barraBusqueda">
+     <div class="acciones">
+    <table>
+        <tr>
+            <td><button id="buscarRaza">Buscar Raza</button></td>
+            <td><button id="crearRaza">Crear Raza</button></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+
+    <div class="busqueda">
+       <input type="text" pInputText [(ngModel)]="campoBusqueda" />
+       <p-button label="Buscar Raza" icon="pi pi-check"  (onClick)="buscar()" severity="contrast" />
+    </div>
+
+    <div>
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Longevidad</th>
+                    <th>Region Principal</th>
+                    <th>Magia</th>
+                    <th>Corrupción</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (raza of razasFiltrados; track raza.nombre) {
+                    <tr>
+                        <td>{{ raza.nombre }}</td>
+                        <td>{{ raza.descripcion }}</td>
+                        <td>{{ raza.longevidad }}</td>
+                        <td>{{ raza.regionPrincipal }}</td>
+                        <td>{{ raza.afinidadMagica }}</td>
+                        <td>{{ raza.nivelCorrupcion }}</td>
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td colspan="6">No se encontraron razas</td>
+                    </tr>
+                }
+            </tbody>
+
+
+        </table>
+
+    </div>

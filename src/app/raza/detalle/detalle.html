@@ -1,0 +1,76 @@
+    <div class="barraBusqueda">
+     <div class="acciones">
+    <table>
+        <tr>
+            <td><button routerLink="/buscar2" id="buscarRaza">Buscar Raza</button></td>
+            <td><button id="crearRaza">Crear Raza</button></td>
+        </tr>
+    </table>
+    </div>
+    </div>
+
+    <div class="formulario">  
+    <form [formGroup]="formulario" (ngSubmit)="enviar()">
+
+
+        <div>
+            <label>Nombre</label>
+            <input  pInputText type="text" formControlName="nombre">
+
+            @if (formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched) {
+            <small>El nombre es obligatorio y debe tener al menos 3 caracteres</small>
+            }
+        </div>
+
+        
+        <div>
+            <label>Descripción</label>
+            <textarea  pTextarea formControlName="descripcion"></textarea>
+
+            @if (formulario.get('descripcion')?.invalid && formulario.get('descripcion')?.touched) {
+            <small>La descripción es obligatoria (mínimo 10 caracteres)</small>
+            }
+        </div>
+
+        
+        <div>
+            <label>Longevidad</label>
+            <input  pInputText type="text" formControlName="longevidad">
+
+            @if (formulario.get('longevidad')?.invalid && formulario.get('longevidad')?.touched) {
+            <small>La longevidad es obligatoria</small>
+            }
+        </div>
+
+        
+        <div>
+            <label>Nivel de corrupción</label>
+            <input  pInputText type="number" formControlName="nivelCorrupcion" min="0" max="100">
+        </div>
+
+        
+        <div>
+            <label>Región principal</label>
+            <p-select [options]="regiones" formControlName="regionPrincipal"></p-select>
+
+            @if (formulario.get('regionPrincipal')?.invalid && formulario.get('regionPrincipal')?.touched) {
+            <small>La región es obligatoria</small>
+            }
+        </div>
+
+
+        <div>
+            <label>Afinidad mágica</label>
+        
+            <p-selectbutton [options]="afinidades" formControlName="afinidadMagica"   />
+
+            
+        </div>
+
+        
+        <p-button type="submit" [disabled]="formulario.invalid">
+            Guardar raza
+        </p-button>
+
+    </form>
+    </div>  
