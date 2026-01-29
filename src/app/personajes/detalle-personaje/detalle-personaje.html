@@ -1,0 +1,63 @@
+<div class="flex justify-content-center mt-5">
+  <p-card [header]="esEdicion ? 'Editar Héroe' : 'Nuevo Héroe'" [style]="{ width: '450px' }">
+    <form [formGroup]="form" (ngSubmit)="guardar()" class="flex flex-column gap-3">
+      <div class="field">
+        <label for="nombre" class="block mb-2">Nombre</label>
+        <input pInputText id="nombre" formControlName="nombre" class="w-full" />
+      </div>
+
+      <div class="field">
+        <label for="raza" class="block mb-2">Raza</label>
+        <p-select
+          id="raza"
+          [options]="razas"
+          formControlName="raza"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Selecciona una raza"
+          [style]="{ width: '100%' }"
+          appendTo="body"
+        >
+        </p-select>
+        <small
+          *ngIf="form.get('raza')?.invalid && form.get('raza')?.touched"
+          style="color: red; display: block; margin-top: 5px"
+        >
+          La raza es obligatoria.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="corrupcion" class="block mb-2">Nivel de Corrupción</label>
+        <p-inputNumber
+          id="corrupcion"
+          formControlName="nivelCorrupcion"
+          [min]="0"
+          [max]="100"
+          [showButtons]="true"
+          class="w-full"
+        ></p-inputNumber>
+      </div>
+
+      <div class="field">
+        <label for="fecha" class="block mb-2">Fecha Nacimiento</label>
+        <input pInputText type="date" id="fecha" formControlName="fechaNacimiento" class="w-full" />
+      </div>
+
+      <div class="flex justify-content-end gap-2 mt-4">
+        <p-button
+          label="Cancelar"
+          icon="pi pi-times"
+          styleClass="p-button-secondary"
+          routerLink="/personajes"
+        ></p-button>
+        <p-button
+          label="Guardar"
+          icon="pi pi-check"
+          type="submit"
+          [disabled]="form.invalid"
+        ></p-button>
+      </div>
+    </form>
+  </p-card>
+</div>

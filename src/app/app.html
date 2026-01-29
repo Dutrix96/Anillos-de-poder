@@ -1,18 +1,26 @@
 <header class="hero">
   <div class="overlay">
     <h1>Los Anillos de Poder</h1>
-    <p>
-      Antes de la Comunidad.  
-      Antes del Anillo Único.  
-      El origen de la oscuridad.
-    </p>
+    <p>Antes de la Comunidad. Antes del Anillo Único. El origen de la oscuridad.</p>
 
     <div class="acciones">
-      <button routerLink="/detalle2">Explorar Razas</button>
-      <button routerLink="/detalle">Ver Anillos</button>
+      <button routerLink="/buscar-anillo" class="btn-nav">Buscar Anillos</button>
+      <button routerLink="/crear-anillo" class="btn-nav">Crear Anillo</button>
+
+      <button routerLink="/explorar-razas" class="btn-nav">Explorar Razas</button>
+      <button routerLink="/crear-raza" class="btn-nav">Crear Raza</button>
+      <button routerLink="/personajes">Buscar personajes</button>
+      <button routerLink="/padre">Modal</button>
+
     </div>
   </div>
 </header>
+<!--@for (pais of paises; track pais.name.common) {
+  <li>{{ pais.name.common }}</li>
+} @empty {
+  <li>There are no items.</li>
+}-->
 
-
-<router-outlet />
+<div style="padding: 20px">
+  <router-outlet />
+</div>
