@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 import { PersonajesService } from '../../servicios/personajes-service';
+
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-buscar-personaje',
@@ -25,31 +30,34 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrl: './buscar-personaje.css',
   providers: [ConfirmationService, MessageService],
 })
-export class BuscarPersonaje implements OnInit {
-  personajes: any[] = [];
+export class BuscarPersonaje {
+  personajes$: Observable<any[]>;
   error = '';
 
   constructor(
     private personajesService: PersonajesService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
-  ) {}
-
-  ngOnInit(): void {
-    this.cargarPersonajes();
+  ) {
+    this.personajes$ = this.crearStreamPersonajes();
   }
 
-  cargarPersonajes(): void {
-    this.personajesService.getAllPersonajes().subscribe({
-      next: (data) => {
-        this.personajes = data;
+  private crearStreamPersonajes(): Observable<any[]> {
+    return this.personajesService.getAllPersonajes().pipe(
+      tap(() => {
         this.error = '';
-      },
-      error: (err) => {
+      }),
+      catchError((err) => {
         console.error(err);
         this.error = 'Error al cargar personajes';
-      },
-    });
+        return of([]);
+      })
+    );
+  }
+
+  recargar(): void {
+    // recreamos el stream para forzar refresh (simple y limpio)
+    this.personajes$ = this.crearStreamPersonajes();
   }
 
   confirmarBajaFisica(personaje: any): void {
@@ -63,21 +71,21 @@ export class BuscarPersonaje implements OnInit {
       accept: () => {
         this.personajesService.bajaFisica(personaje.id).subscribe({
           next: () => {
-            this.personajes = this.personajes.filter((p) => p.id !== personaje.id);
-
             this.messageService.add({
               severity: 'success',
               summary: 'OK',
               detail: 'Personaje borrado definitivamente.',
               life: 3000,
             });
+
+            this.recargar();
           },
           error: (err) => {
             console.error(err);
             this.messageService.add({
               severity: 'error',
               summary: 'No se puede borrar',
-              detail: 'No se puede borrar ese personaje porque es portador.',
+              detail: 'No se puede borrar, el anillo le hace demasiado poderoso y jodes el canon.',
               life: 4000,
             });
           },
@@ -102,7 +110,8 @@ export class BuscarPersonaje implements OnInit {
               detail: 'Se ha dado de baja correctamente.',
               life: 3000,
             });
-            this.cargarPersonajes();
+
+            this.recargar();
           },
           error: (err) => {
             console.error(err);
@@ -134,7 +143,8 @@ export class BuscarPersonaje implements OnInit {
               detail: 'Personaje reactivado correctamente.',
               life: 3000,
             });
-            this.cargarPersonajes();
+
+            this.recargar();
           },
           error: (err) => {
             console.error(err);

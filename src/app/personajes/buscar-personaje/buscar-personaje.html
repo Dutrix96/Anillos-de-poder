@@ -7,7 +7,7 @@
     <p-button label="Nuevo personaje" icon="pi pi-plus" [routerLink]="['/personajes/nuevo']"></p-button>
   </div>
 
-  <p-table [value]="personajes" [tableStyle]="{ 'min-width': '50rem' }" stripedRows>
+  <p-table [value]="(personajes$ | async) ?? []" [tableStyle]="{ 'min-width': '50rem' }" stripedRows>
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="nombre">
@@ -29,6 +29,7 @@
         <th>Acciones</th>
       </tr>
     </ng-template>
+
     <ng-template pTemplate="body" let-personaje>
       <tr>
         <td>{{ personaje.nombre }}</td>
@@ -40,31 +41,31 @@
         <td>{{ personaje.fechaNacimiento }}</td>
         <td>
           <div style="display: flex; gap: 6px; align-items: center">
-            <p-button icon="pi pi-pencil" [rounded]="true" text="true" severity="success"
+            <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" severity="success"
               [routerLink]="['/personajes/editar', personaje.id]"></p-button>
 
-            <p-button icon="pi pi-trash" [rounded]="true" text="true" severity="danger"
+            <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger"
               (onClick)="confirmarBajaFisica(personaje)"></p-button>
 
             @if (!personaje.fechaBaja) {
-            <p-button icon="pi pi-ban" [rounded]="true" text="true" severity="secondary"
+            <p-button icon="pi pi-ban" [rounded]="true" [text]="true" severity="secondary"
               (onClick)="confirmarBajaLogica(personaje)"></p-button>
             } @else {
-            <p-button icon="pi pi-refresh" [rounded]="true" text="true" severity="info"
+            <p-button icon="pi pi-refresh" [rounded]="true" [text]="true" severity="info"
               (onClick)="confirmarReactivar(personaje)"></p-button>
             }
-
-
           </div>
         </td>
       </tr>
     </ng-template>
+
     <ng-template pTemplate="emptymessage">
       <tr>
         <td colspan="5" style="text-align: center">No hay personajes.</td>
       </tr>
     </ng-template>
   </p-table>
+
   @if (error) {
   <p style="margin-top: 12px; color: #b00020">
     {{ error }}
