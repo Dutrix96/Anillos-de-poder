@@ -1,0 +1,22 @@
+<div class="panel">
+  <h2>Estadísticas</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="titulo">Victorias</div>
+      <div class="num">{{ victorias }}</div>
+    </div>
+    <div class="card">
+      <div class="titulo">Total</div>
+      <div class="num">{{ total }}</div>
+    </div>
+    <div class="card">
+      <div class="titulo">Derrotas</div>
+      <div class="num">{{ derrotas }}</div>
+    </div>
+  </div>
+
+  <div class="acciones">
+    <button pButton type="button" label="Borrar historial" severity="danger" (click)="borrar()"></button>
+  </div>
+</div>

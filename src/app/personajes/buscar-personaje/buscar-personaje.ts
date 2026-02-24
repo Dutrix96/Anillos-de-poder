@@ -56,7 +56,6 @@ export class BuscarPersonaje {
   }
 
   recargar(): void {
-    // recreamos el stream para forzar refresh (simple y limpio)
     this.personajes$ = this.crearStreamPersonajes();
   }
 

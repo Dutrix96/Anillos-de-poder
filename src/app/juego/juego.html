@@ -1,0 +1,59 @@
+<div class="juego-container">
+
+  <h2>Juego: El Señor de los Anillos</h2>
+
+  <div class="botones">
+    <button pButton type="button" label="Empezar partida" (click)="empezar()"></button>
+    <button pButton type="button" label="Reiniciar" (click)="reiniciarUI()"></button>
+  </div>
+
+  <div class="marcador">
+    <span>Racha: {{ racha }}/5</span>
+    <span>Correctas: {{ correctas }}</span>
+    <span>Respondidas: {{ respondidas }}</span>
+    <span>Usadas: {{ usadas.length }}/30</span>
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  @if (estado === 'jugando' && !pregunta && !error) {
+  <div>
+    Cargando pregunta...
+  </div>
+}
+
+@if (pregunta) {
+  <div>
+    <h3>{{ pregunta.pregunta }}</h3>
+
+    <button pButton (click)="responder(1)">
+      {{ pregunta.respuesta1 }}
+    </button>
+
+    <button pButton (click)="responder(2)">
+      {{ pregunta.respuesta2 }}
+    </button>
+
+    <button pButton (click)="responder(3)">
+      {{ pregunta.respuesta3 }}
+    </button>
+
+    <button pButton (click)="responder(4)">
+      {{ pregunta.respuesta4 }}
+    </button>
+  </div>
+}
+
+@if (estado === 'ganada') {
+  <div>
+    GG EZ Noobs
+  </div>
+}
+
+@if (estado === 'perdida') {
+  <div>
+    Game Over
+  </div>
+}

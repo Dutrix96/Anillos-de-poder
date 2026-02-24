@@ -1,0 +1,36 @@
+.panel {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+  opacity: 0.95;
+}
+
+.pregunta { margin: 14px 0; }
+
+.respuestas {
+  display: grid;
+  gap: 10px;
+}
+
+.error { color: #ffb3b3; margin-top: 8px; }
+
+.msg { margin-top: 14px; }
+.msg.ok { color: #b9ffb9; }
+.msg.ko { color: #ffb3b3; }

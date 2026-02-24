@@ -1,0 +1,27 @@
+.panel {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.card {
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  text-align: center;
+}
+
+.titulo { opacity: 0.9; }
+.num { font-size: 44px; font-weight: 700; margin-top: 6px; }
+
+.acciones { margin-top: 14px; }
