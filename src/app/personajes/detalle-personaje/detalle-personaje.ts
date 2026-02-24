@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PersonajesService, PersonajeDTO } from '../../servicios/personajes-service';
 
-// PrimeNG Imports
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';

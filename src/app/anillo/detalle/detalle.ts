@@ -22,7 +22,6 @@ import { ButtonModule } from 'primeng/button';
 })
 export class Detalle {
 
-  // mismas razas que usas en los anillos del buscador
   razas = ['Elfo', 'Enano', 'Humano', 'Maiar', 'Oscuro'];
 
   formulario: FormGroup = new FormGroup({
