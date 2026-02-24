@@ -6,6 +6,7 @@ import { Busqueda2 } from './raza/busqueda/busqueda';
 import { BuscarPersonaje } from './personajes/buscar-personaje/buscar-personaje';
 import { EditarPersonajeComponent } from './personajes/detalle-personaje/detalle-personaje';
 import { Padre } from './modales/padre/padre';
+import { PortadoresComponent } from './portadores-component/portadores-component';
 
 export const routes: Routes = [
   { path: 'buscar-anillo', component: Busqueda },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'personajes/editar/:id', component: EditarPersonajeComponent },
   { path: '', redirectTo: 'buscar-anillo', pathMatch: 'full' },
   { path: 'padre', component: Padre},
+  { path: 'portadores', component: PortadoresComponent}
 ];

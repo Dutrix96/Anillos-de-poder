@@ -1,0 +1,16 @@
+table {
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+    border: black solid 3px;
+    padding: 6px;
+}
+
+table td {
+    border: black solid 3px;
+}
+
+.botonera{
+    text-align: center;
+    margin-top: 5%;
+}
